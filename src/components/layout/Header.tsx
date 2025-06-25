@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -11,8 +11,15 @@ const Header: React.FC = () => {
 
   // Mock authentication state. In a real app, this would come from a context or hook.
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  // Mock theme state
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  // Theme state, defaulting to dark mode as requested.
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  // Effect to apply the theme class to the <html> element
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.toggle('dark', isDarkMode);
+  }, [isDarkMode]);
 
   const navLinkClasses = ({ isActive }: { isActive: boolean }) =>
     `text-sm font-medium transition-colors hover:text-primary ${
