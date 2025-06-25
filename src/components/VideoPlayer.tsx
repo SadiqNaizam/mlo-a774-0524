@@ -213,36 +213,20 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         Your browser does not support the video tag.
       </video>
 
-      <div className={cn("absolute inset-0 flex items-center justify-center transition-opacity duration-300", isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100')}>
-         <Button variant="ghost" size="icon" className="w-20 h-20" onClick={togglePlayPause}>
-            {isPlaying ? <Pause className="w-12 h-12" /> : <Play className="w-12 h-12" />}
-         </Button>
-      </div>
+      <div className={cn("absolute inset-0 flex items-center justify-center transition-opacity duration-300", isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100')}>\n         <Button variant="ghost" size="icon" className="w-20 h-20" onClick={togglePlayPause}>\n            {isPlaying ? <Pause className="w-12 h-12" /> : <Play className="w-12 h-12" />}\n         </Button>\n      </div>
 
       <div
         className={cn(
           'absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent transition-opacity duration-300',
           isControlsVisible ? 'opacity-100' : 'opacity-0'
         )}
-      >
-        {/* Progress Bar */}
-        <Slider
+      >\n        {/* Progress Bar */}\n        <Slider
           value={[duration > 0 ? (currentTime / duration) * 100 : 0]}
           onValueChange={handleSeek}
           className="w-full h-2 cursor-pointer"
         />
 
-        {/* Controls */}
-        <div className="flex items-center justify-between mt-2 text-white">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={togglePlayPause}>
-              {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
-            </Button>
-            <div className="flex items-center gap-2">
-                <Button variant="ghost" size="icon" onClick={toggleMute}>
-                    {isMuted || volume === 0 ? <VolumeX className="w-6 h-6" /> : volume > 0.5 ? <Volume2 className="w-6 h-6" /> : <Volume1 className="w-6 h-6" />}
-                </Button>
-                <Slider
+        {/* Controls */}\n        <div className="flex items-center justify-between mt-2 text-white">\n          <div className="flex items-center gap-4">\n            <Button variant="ghost" size="icon" onClick={togglePlayPause}>\n              {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}\n            </Button>\n            <div className="flex items-center gap-2">\n                <Button variant="ghost" size="icon" onClick={toggleMute}>\n                    {isMuted || volume === 0 ? <VolumeX className="w-6 h-6" /> : volume > 0.5 ? <Volume2 className="w-6 h-6" /> : <Volume1 className="w-6 h-6" />}\n                </Button>\n                <Slider
                     value={[isMuted ? 0 : volume]}
                     onValueChange={handleVolumeChange}
                     max={1}
@@ -250,34 +234,4 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                     className="w-24"
                 />
             </div>
-            <span className="text-sm font-mono">{formatTime(currentTime)} / {formatTime(duration)}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Popover>
-                <PopoverTrigger asChild>
-                    <Button variant="ghost" size="icon"><Settings className="w-6 h-6" /></Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-40 bg-black/80 border-gray-700 text-white">
-                    <div className="grid gap-4">
-                       <div className="space-y-2">
-                           <h4 className="font-medium leading-none text-sm">Quality</h4>
-                           <div className="flex flex-col items-start">
-                           {sources.map(q => (
-                               <Button key={q.label} variant="ghost" className={cn("w-full justify-start", activeQuality.label === q.label && "font-bold text-primary")} onClick={() => handleQualityChange(q)}>{q.label}</Button>
-                           ))}
-                           </div>
-                       </div>
-                    </div>
-                </PopoverContent>
-            </Popover>
-            <Button variant="ghost" size="icon" onClick={toggleFullScreen}>
-              <Fullscreen className="w-6 h-6" />
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default VideoPlayer;
+            <span className="text-sm font-mono">{formatTime(currentTime)} / {formatTime(duration)}</span>\n          </div>\n          <div className="flex items-center gap-2">\n            <Popover>\n                <PopoverTrigger asChild>\n                    <Button variant="ghost" size="icon"><Settings className="w-6 h-6" /></Button>\n                </PopoverTrigger>\n                <PopoverContent className="w-40">\n                    <div className="grid gap-4">\n                       <div className=\"space-y-2\">\n                           <h4 className="font-medium leading-none text-sm">Quality</h4>\n                           <div className=\"flex flex-col items-start\">\n                           {sources.map(q => (\n                               <Button key={q.label} variant="ghost" className={cn("w-full justify-start", activeQuality.label === q.label && "font-bold text-primary")} onClick={() => handleQualityChange(q)}>{q.label}</Button>\n                           ))}\n                           </div>\n                       </div>\n                    </div>\n                </PopoverContent>\n            </Popover>\n            <Button variant="ghost" size="icon" onClick={toggleFullScreen}>\n              <Fullscreen className="w-6 h-6" />\n            </Button>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default VideoPlayer;
