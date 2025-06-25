@@ -46,8 +46,8 @@ const moreLikeThisContent = [
     { id: '1', title: 'Cosmic Drift', posterUrl: 'https://via.placeholder.com/300x450/4B0082/FFFFFF?text=Cosmic+Drift' },
     { id: '2', title: 'Cybernetic Uprising', posterUrl: 'https://via.placeholder.com/300x450/00008B/FFFFFF?text=Cybernetic+Uprising' },
     { id: '3', title: 'The Last Stand', posterUrl: 'https://via.placeholder.com/300x450/8B0000/FFFFFF?text=The+Last+Stand' },
-    { id: '4', title: 'Ocean\'s Mystery', posterUrl: 'https://via.placeholder.com/300x450/008080/FFFFFF?text=Ocean\'s+Mystery' },
-    { id: '5', title: 'Mountain\'s Echo', posterUrl: 'https://via.placeholder.com/300x450/2F4F4F/FFFFFF?text=Mountain\'s+Echo' },
+    { id: '4', title: "Ocean's Mystery", posterUrl: "https://via.placeholder.com/300x450/008080/FFFFFF?text=Ocean's+Mystery" },
+    { id: '5', title: "Mountain's Echo", posterUrl: "https://via.placeholder.com/300x450/2F4F4F/FFFFFF?text=Mountain's+Echo" },
 ];
 
 const VideoPlaybackPage = () => {
@@ -73,7 +73,7 @@ const VideoPlaybackPage = () => {
     }
 
     return (
-        <div className="bg-gray-900 text-white min-h-screen flex flex-col">
+        <div className="bg-background text-foreground min-h-screen flex flex-col">
             <Header />
             <main className="flex-grow container mx-auto px-4 py-6">
                 <section className="mb-6">
@@ -85,7 +85,7 @@ const VideoPlaybackPage = () => {
 
                 <section className="mb-8">
                     <h1 className="text-3xl md:text-4xl font-bold mb-2">{videoDetails.title}</h1>
-                    <p className="text-gray-400 max-w-3xl mb-4">{videoDetails.description}</p>
+                    <p className="text-muted-foreground max-w-3xl mb-4">{videoDetails.description}</p>
                     <div className="flex items-center gap-4">
                         <Button onClick={handleAddToWatchlist} variant="outline">
                             <Bookmark className="mr-2 h-4 w-4" /> Add to Watchlist
@@ -98,7 +98,7 @@ const VideoPlaybackPage = () => {
                 
                 <section>
                     <Tabs defaultValue="more-like-this" className="w-full">
-                        <TabsList className="grid w-full grid-cols-2 md:w-[400px] md:grid-cols-2 bg-gray-800">
+                        <TabsList className="grid w-full grid-cols-2 md:w-[400px] md:grid-cols-2 bg-muted">
                             <TabsTrigger value="more-like-this">More Like This</TabsTrigger>
                             <TabsTrigger value="details">Details & Cast</TabsTrigger>
                         </TabsList>
@@ -116,19 +116,19 @@ const VideoPlaybackPage = () => {
                         </TabsContent>
                         <TabsContent value="details" className="py-6">
                             <Accordion type="single" collapsible className="w-full max-w-3xl" defaultValue="item-1">
-                                <AccordionItem value="item-1" className="border-gray-700">
+                                <AccordionItem value="item-1" className="border-border">
                                     <AccordionTrigger className="hover:no-underline text-lg">Details</AccordionTrigger>
-                                    <AccordionContent className="text-gray-300">
+                                    <AccordionContent className="text-muted-foreground">
                                         {videoDetails.details}
                                     </AccordionContent>
                                 </AccordionItem>
-                                <AccordionItem value="item-2" className="border-gray-700">
+                                <AccordionItem value="item-2" className="border-border">
                                     <AccordionTrigger className="hover:no-underline text-lg">Cast & Crew</AccordionTrigger>
-                                    <AccordionContent className="text-gray-300">
+                                    <AccordionContent className="text-muted-foreground">
                                         <ul className="list-disc pl-5">
                                             {videoDetails.cast.map((member, index) => (
                                                 <li key={index}>{member}</li>
-                                            ))}
+                                            ))}\
                                         </ul>
                                     </AccordionContent>
                                 </AccordionItem>
